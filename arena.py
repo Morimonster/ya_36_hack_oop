@@ -12,11 +12,15 @@
 
 
 """
+import random
+from unicodedata import name
+
+
 class Thing:
     """Кдасс вещей."""
     
     def __init__(self, 
-                thing_name, 
+                thing_name,
                 thing_armor, 
                 thing_damage) -> None:
         self.thing_name = thing_name
@@ -27,49 +31,61 @@ class Thing:
 class Person:
     """Класс персонажа."""
 
+
     def __init__(self, 
                 name,
-                hp = 100,
-                attack = 10,
-                armor = 8) -> None:
+                status,
+                hp,
+                attack,
+                armor) -> None:
         self.name = name
+        self.status = status
         self.hp = hp
         self.attack = attack
         self.armor = armor
+        
+    def show_person(self):
+        print(f'Имя персонажа: {self.name};\n'
+                f'Статус персонажа: {self.status};\n'
+                f'Здоровье: {self.hp};\n'
+                f'Атака: {self.attack};\n'
+                f'Защита: {self.armor}')
 
     def set_things(self):
         pass
 
-class Paladin(Person):
-    def __init__(self, 
-                name, 
-                hp, 
-                attack, 
-                armor) -> None:
-        super().__init__(name, 
-                        hp, 
-                        attack, 
-                        armor)
-        self.hp *= 2
-        self.attack += 10
-        self.armor *= 2
+
+pers_name_list = ['Jade', 'Bore', 'Snake', 'Spike', 'Jasp', 'Skeo', 'Rolf', 'Zik', 'Loki', 'Clans']
+pers_rand_name = random.choice(pers_name_list)
+#print(pers_rand_name)
+
+pers_status = ['Paladin', 'Warrior']
+pers_rand_status = random.choice(pers_status)
+#print(pers_rand_status)
+
+base_hp = 100
+base_attack = 10
+base_armor = 8
+
+if pers_rand_status == 'Paladin':
+    base_hp *= 2
+    if pers_rand_status == 'Paladin':
+        base_armor *= 2
+elif pers_rand_status == 'Warrior':
+    base_attack *= 2
+
+t, t_2 = Person(str(pers_rand_name), 
+            str(pers_rand_status), 
+            base_hp, 
+            base_attack, 
+            base_armor)
+
+Person.show_person(t)
 
 
-class Warrior(Person):
-    def __init__(self, 
-                name, 
-                hp=100, 
-                attack=10 * 2, 
-                armor=8) -> None:
-        super().__init__(name, 
-                        hp, 
-                        attack, 
-                        armor)
-        self.attack *= 2               
-    def show_pers(self):
-        return (f'Имя: {self.name}, HP: {self.hp}, Атака: {self.attack}, Защита: {self.armor}')
 
-def get_parameters(par):
+
+"""def get_parameters(par):
     params = {
         'name': 'Bob',
         'hp': 100,
@@ -84,7 +100,7 @@ for par in base_pars:
 
 
 get_parameters(par)
-
+"""
 
 
 
