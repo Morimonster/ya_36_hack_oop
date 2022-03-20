@@ -16,8 +16,7 @@ class Thing:
         print(f'Вид амуниции: {self.thing_name};\n'
               f'Очки брони: {self.thing_armor};\n'
               f'Очки урона: {self.thing_damage}')
-
-    
+   
 
 class Person:
     """Класс персонажа."""
@@ -42,19 +41,29 @@ class Person:
               f'Атака: {self.attack};\n'
               f'Защита: {self.armor}')
 
-    def set_things(self):
-        pass
 
-class DressedWarrior(Person, Thing):
-    """Создание одетого персонажа."""
+
+"""class DressedWarrior(Person, Thing):
+
+    Person.__init__(self, name, status, hp, attack, armor)
+    Thing.__init__(self, thing_name, thing_armor, thing_damage)
+
+    def get_all_params(self):
+        return (self.name, 
+                self.status,
+                self.thing_name,
+                self.hp,
+                self.attack + self.thing_damage,
+                self.armor + self.thing_armor)
+
 
     def dressed_man(self):
-        print(f'Имя персонажа: {self.name};\n'
-              f'Статус персонажа: {self.status};\n'
-              f'Вид амуниции: {self.thing_name};\n'
-              f'Здоровье: {self.hp};\n'
-              f'Атака: {self.attack + self.thing_damage};\n'
-              f'Защита: {self.armor + self.thing_armor}')
+        return (f'Имя персонажа: {self.name};\n'
+                f'Статус персонажа: {self.status};\n'
+                f'Вид амуниции: {self.thing_name};\n'
+                f'Здоровье: {self.hp};\n'
+                f'Атака: {self.attack + self.thing_damage};\n'
+                f'Защита: {self.armor + self.thing_armor}')"""
 
 
 
@@ -100,7 +109,7 @@ def create_thing_obj():
 
 
     if rand_thing_name == 'Меч':
-        base_thing_attack = 10
+        base_thing_attack =  10
     elif rand_thing_name == 'Лук':
         base_thing_attack = 15
     elif rand_thing_name == 'Щит':
@@ -115,4 +124,8 @@ def create_thing_obj():
                 base_thing_attack)
 
     return Thing.show_thing(thing)
+
+
+print(create_pers_obj())
+print(create_thing_obj())
 
