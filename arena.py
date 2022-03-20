@@ -74,7 +74,7 @@ if pers_rand_status == 'Paladin':
 elif pers_rand_status == 'Warrior':
     base_attack *= 2
 
-t, t_2 = Person(str(pers_rand_name), 
+t = Person(str(pers_rand_name), 
             str(pers_rand_status), 
             base_hp, 
             base_attack, 
