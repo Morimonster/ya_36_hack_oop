@@ -12,3 +12,79 @@
 
 
 """
+class Thing:
+    """Кдасс вещей."""
+    
+    def __init__(self, 
+                thing_name, 
+                thing_armor, 
+                thing_damage) -> None:
+        self.thing_name = thing_name
+        self.thing_armor = thing_armor
+        self.thing_damage = thing_damage
+    
+
+class Person:
+    """Класс персонажа."""
+
+    def __init__(self, 
+                name,
+                hp = 100,
+                attack = 10,
+                armor = 8) -> None:
+        self.name = name
+        self.hp = hp
+        self.attack = attack
+        self.armor = armor
+
+    def set_things(self):
+        pass
+
+class Paladin(Person):
+    def __init__(self, 
+                name, 
+                hp, 
+                attack, 
+                armor) -> None:
+        super().__init__(name, 
+                        hp, 
+                        attack, 
+                        armor)
+        self.hp *= 2
+        self.attack += 10
+        self.armor *= 2
+
+
+class Warrior(Person):
+    def __init__(self, 
+                name, 
+                hp=100, 
+                attack=10 * 2, 
+                armor=8) -> None:
+        super().__init__(name, 
+                        hp, 
+                        attack, 
+                        armor)
+        self.attack *= 2               
+    def show_pers(self):
+        return (f'Имя: {self.name}, HP: {self.hp}, Атака: {self.attack}, Защита: {self.armor}')
+
+def get_parameters(par):
+    params = {
+        'name': 'Bob',
+        'hp': 100,
+        'attack': 10,
+        'armor': 8
+        }
+    print(params[par])
+    
+base_pars = [('name'), ('hp'), ('attack'), ('armor')]
+for par in base_pars:
+    get_parameters(par)
+
+get_parameters(par)
+
+
+
+
+        
