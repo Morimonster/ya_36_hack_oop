@@ -1,19 +1,4 @@
-"""
-1) Вещи: class Thing Класс содержит в себе следующие параметры - название, процент защиты, атаку и жизнь; Это могут быть предметы одежды, магические кольца, всё что угодно)
-
-2) Персонаж: class Person Класс, содержащий в себе следующие параметры:
-
-    Имя, кол-во hp/жизней, базовую атаку, базовый процент защиты. Параметры передаются через конструктор;
-    метод, принимающий на вход список вещей set_things(things);
-    метод вычитания жизни на основе входной атаки, а также методы для выполнения алгоритма, представленного ниже;
-3) Паладин: class Paladin Класс наследуется от персонажа, при этом количество присвоенных жизней и процент защиты умножается на 2 в конструкторе;
-
-4) Воин: class Warrior Класс наследуется от персонажа, при этом атака умножается на 2 в конструкторе./
-
-
-"""
 import random
-from unicodedata import name
 
 
 class Thing:
@@ -26,6 +11,12 @@ class Thing:
         self.thing_name = thing_name
         self.thing_armor = thing_armor
         self.thing_damage = thing_damage
+    
+    def show_thing(self):
+        print(f'Вид амуниции: {self.thing_name};\n'
+              f'Очки брони: {self.thing_armor};\n'
+              f'Очки урона: {self.thing_damage}')
+
     
 
 class Person:
@@ -46,20 +37,35 @@ class Person:
         
     def show_person(self):
         print(f'Имя персонажа: {self.name};\n'
-                f'Статус персонажа: {self.status};\n'
-                f'Здоровье: {self.hp};\n'
-                f'Атака: {self.attack};\n'
-                f'Защита: {self.armor}')
+              f'Статус персонажа: {self.status};\n'
+              f'Здоровье: {self.hp};\n'
+              f'Атака: {self.attack};\n'
+              f'Защита: {self.armor}')
 
     def set_things(self):
         pass
 
+class DressedWarrior(Person, Thing):
+    """Создание одетого персонажа."""
 
-pers_name_list = ['Jade', 'Bore', 'Snake', 'Spike', 'Jasp', 'Skeo', 'Rolf', 'Zik', 'Loki', 'Clans']
+    def dressed_man(self):
+        print(f'Имя персонажа: {self.name};\n'
+              f'Статус персонажа: {self.status};\n'
+              f'Вид амуниции: {self.thing_name};\n'
+              f'Здоровье: {self.hp};\n'
+              f'Атака: {self.attack + self.thing_damage};\n'
+              f'Защита: {self.armor + self.thing_armor}')
+
+
+
+
+
+
+pers_name_list = ['Джейд', 'Бор', 'Снэйк', 'Спайк', 'Джасп', 'Скео', 'Рольф', 'Зик', 'Локи', 'Стэлс']
 pers_rand_name = random.choice(pers_name_list)
 #print(pers_rand_name)
 
-pers_status = ['Paladin', 'Warrior']
+pers_status = ['Паладин', 'Воин']
 pers_rand_status = random.choice(pers_status)
 #print(pers_rand_status)
 
@@ -67,40 +73,48 @@ base_hp = 100
 base_attack = 10
 base_armor = 8
 
-if pers_rand_status == 'Paladin':
+if pers_rand_status == 'Паладин':
     base_hp *= 2
-    if pers_rand_status == 'Paladin':
+    if pers_rand_status == 'Паладин':
         base_armor *= 2
-elif pers_rand_status == 'Warrior':
+elif pers_rand_status == 'Воин':
     base_attack *= 2
 
-t = Person(str(pers_rand_name), 
+fighter = Person(str(pers_rand_name), 
             str(pers_rand_status), 
             base_hp, 
             base_attack, 
             base_armor)
 
-Person.show_person(t)
+
+base_thing_armor = 0
+base_thing_attack = 0
+
+thing_list = ['Меч', 'Лук', 'Щит', 'Броник', 'Шлем']
+rand_thing_name = random.choice(thing_list)
+
+
+if rand_thing_name == 'Меч':
+    base_thing_attack = 10
+elif rand_thing_name == 'Лук':
+    base_thing_attack = 15
+elif rand_thing_name == 'Щит':
+    base_thing_armor = 8
+elif rand_thing_name == 'Броник':
+    base_thing_armor = 12
+elif rand_thing_name == 'Шлем':
+    base_thing_armor = 10
+
+thing = Thing(rand_thing_name,
+            base_thing_armor,
+            base_thing_attack)
 
 
 
 
-"""def get_parameters(par):
-    params = {
-        'name': 'Bob',
-        'hp': 100,
-        'attack': 10,
-        'armor': 8
-        }
-    print(params[par])
-    
-base_pars = [('name'), ('hp'), ('attack'), ('armor')]
-for par in base_pars:
-    get_parameters(par)
+Person.show_person(fighter)
+Thing.show_thing(thing)
 
-
-get_parameters(par)
-"""
 
 
 
