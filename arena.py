@@ -82,6 +82,7 @@ base_pars = [('name'), ('hp'), ('attack'), ('armor')]
 for par in base_pars:
     get_parameters(par)
 
+
 get_parameters(par)
 
 
