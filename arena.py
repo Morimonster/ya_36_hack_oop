@@ -59,63 +59,60 @@ class DressedWarrior(Person, Thing):
 
 
 
+def create_pers_obj():
+    """Создание объекта война."""
 
+    pers_name_list = ['Джейд', 'Бор', 'Снэйк', 'Спайк', 'Джасп', 'Скео', 'Рольф', 'Зик', 'Локи', 'Стэлс']
+    pers_rand_name = random.choice(pers_name_list)
+    #print(pers_rand_name)
 
-pers_name_list = ['Джейд', 'Бор', 'Снэйк', 'Спайк', 'Джасп', 'Скео', 'Рольф', 'Зик', 'Локи', 'Стэлс']
-pers_rand_name = random.choice(pers_name_list)
-#print(pers_rand_name)
+    pers_status = ['Паладин', 'Воин']
+    pers_rand_status = random.choice(pers_status)
+    #print(pers_rand_status)
 
-pers_status = ['Паладин', 'Воин']
-pers_rand_status = random.choice(pers_status)
-#print(pers_rand_status)
+    base_hp = 100
+    base_attack = 10
+    base_armor = 8
 
-base_hp = 100
-base_attack = 10
-base_armor = 8
-
-if pers_rand_status == 'Паладин':
-    base_hp *= 2
     if pers_rand_status == 'Паладин':
-        base_armor *= 2
-elif pers_rand_status == 'Воин':
-    base_attack *= 2
+        base_hp *= 2
+        if pers_rand_status == 'Паладин':
+            base_armor *= 2
+    elif pers_rand_status == 'Воин':
+        base_attack *= 2
 
-fighter = Person(str(pers_rand_name), 
-            str(pers_rand_status), 
-            base_hp, 
-            base_attack, 
-            base_armor)
-
-
-base_thing_armor = 0
-base_thing_attack = 0
-
-thing_list = ['Меч', 'Лук', 'Щит', 'Броник', 'Шлем']
-rand_thing_name = random.choice(thing_list)
+    fighter = Person(str(pers_rand_name), 
+                str(pers_rand_status), 
+                base_hp, 
+                base_attack, 
+                base_armor)
+    return Person.show_person(fighter)
 
 
-if rand_thing_name == 'Меч':
-    base_thing_attack = 10
-elif rand_thing_name == 'Лук':
-    base_thing_attack = 15
-elif rand_thing_name == 'Щит':
-    base_thing_armor = 8
-elif rand_thing_name == 'Броник':
-    base_thing_armor = 12
-elif rand_thing_name == 'Шлем':
-    base_thing_armor = 10
+def create_thing_obj():
+    """Создание объекта амуниции."""
 
-thing = Thing(rand_thing_name,
-            base_thing_armor,
-            base_thing_attack)
+    base_thing_armor = 0
+    base_thing_attack = 0
+
+    thing_list = ['Меч', 'Лук', 'Щит', 'Броник', 'Шлем']
+    rand_thing_name = random.choice(thing_list)
 
 
+    if rand_thing_name == 'Меч':
+        base_thing_attack = 10
+    elif rand_thing_name == 'Лук':
+        base_thing_attack = 15
+    elif rand_thing_name == 'Щит':
+        base_thing_armor = 8
+    elif rand_thing_name == 'Броник':
+        base_thing_armor = 12
+    elif rand_thing_name == 'Шлем':
+        base_thing_armor = 10
 
+    thing = Thing(rand_thing_name,
+                base_thing_armor,
+                base_thing_attack)
 
-Person.show_person(fighter)
-Thing.show_thing(thing)
+    return Thing.show_thing(thing)
 
-
-
-
-        
